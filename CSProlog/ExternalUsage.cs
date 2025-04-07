@@ -169,7 +169,6 @@ namespace Prolog
 
     public partial class PrologEngine
     {
-#if mswindows
         #region Batch Processing
         public bool ProcessArgs(string[] args, bool windowsMode)
         {
@@ -213,10 +212,7 @@ namespace Prolog
 
             if (msg != null)
             {
-                if (windowsMode)
-                    MessageBox.Show(msg);
-                else
-                    Console.WriteLine(msg);
+                Console.WriteLine(msg);
 
                 Environment.ExitCode = 1; // sets DOS ERRORLEVEL to 1
             }
@@ -224,7 +220,6 @@ namespace Prolog
             return true;
         }
         #endregion Batch Processing
-#endif
 
         #region GetAllSolutionsXml
         // Store solutions in an xml structure

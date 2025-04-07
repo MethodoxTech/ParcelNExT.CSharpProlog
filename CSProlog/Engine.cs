@@ -2103,15 +2103,14 @@ namespace Prolog
         public void CheckConfigFile()
         {
 #if !NETSTANDARD
-            string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            //string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-            if (!File.Exists(configFileName))
-            {
-                string msg = string.Format(
-                  "No config file ({0}) found: default settings used", configFileName);
+            //if (!File.Exists(configFileName))
+            //{
+            //    string msg = string.Format("No config file ({0}) found: default settings used", configFileName);
 
-                IO.Warning(msg);
-            }
+            //    IO.Warning(msg);
+            //}
 #endif
         }
 

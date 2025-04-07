@@ -340,8 +340,7 @@ namespace Prolog
 
             void LoadFromFile()
             {
-                IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(
-                  IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+                IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
 
                 if (isoStore.GetFileNames(settingsFileName).Length == 0) return;
 
@@ -351,15 +350,16 @@ namespace Prolog
                 {
                     try
                     {
-                        // deserialize the Hashtable from stream.
-                        IFormatter formatter = new BinaryFormatter();
-                        Hashtable appData = (Hashtable)formatter.Deserialize(stream);
+                        // Obsolete
+                        //// deserialize the Hashtable from stream.
+                        //IFormatter formatter = new BinaryFormatter();
+                        //Hashtable appData = (Hashtable)formatter.Deserialize(stream);
 
-                        // enumerate through the collection and load our base Hashtable.
-                        IDictionaryEnumerator enumerator = appData.GetEnumerator();
+                        //// enumerate through the collection and load our base Hashtable.
+                        //IDictionaryEnumerator enumerator = appData.GetEnumerator();
 
-                        while (enumerator.MoveNext())
-                            this[enumerator.Key] = enumerator.Value;
+                        //while (enumerator.MoveNext())
+                        //    this[enumerator.Key] = enumerator.Value;
                     }
                     catch
                     {
@@ -384,16 +384,17 @@ namespace Prolog
 
                 if (stream != null)
                 {
-                    try
-                    {
-                        // Serialize the Hashtable into the IsolatedStorage.
-                        IFormatter formatter = new BinaryFormatter();
-                        formatter.Serialize(stream, (Hashtable)this);
-                    }
-                    finally
-                    {
-                        stream.Dispose();
-                    }
+                    // Obsolete
+                    //try
+                    //{
+                    //    // Serialize the Hashtable into the IsolatedStorage.
+                    //    IFormatter formatter = new BinaryFormatter();
+                    //    formatter.Serialize(stream, (Hashtable)this);
+                    //}
+                    //finally
+                    //{
+                    //    stream.Dispose();
+                    //}
                 }
             }
 

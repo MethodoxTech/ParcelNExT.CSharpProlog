@@ -92,7 +92,7 @@ namespace Prolog
 
             while (true)
             {
-                if ((line = System.ReadLine.Read()) == null)
+                if ((line = System.Console.ReadLine()) == null)
                 {
                     sb.Length = 0;
 
@@ -109,7 +109,7 @@ namespace Prolog
                 }
             }
 
-            ReadLine.AddHistory(sb.ToString().TrimEnd(Environment.NewLine.ToCharArray()));
+            System.Console.WriteLine(sb.ToString().TrimEnd(Environment.NewLine.ToCharArray()));
             return sb.ToString();
         }
 
