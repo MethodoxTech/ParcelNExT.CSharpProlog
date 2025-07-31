@@ -15,13 +15,10 @@
 
 using System;
 using System.Text;
-using System.IO;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 #if !NETSTANDARD
 using System.Data.Common;
-using System.Data;
 #endif
 
 namespace Prolog

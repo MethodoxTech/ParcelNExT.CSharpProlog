@@ -30,7 +30,6 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 #endif
 
 namespace Prolog

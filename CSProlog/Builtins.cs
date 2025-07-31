@@ -14,7 +14,6 @@
 -------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -28,8 +27,6 @@ using System.Security.Principal;
 using System.Resources;
 #endif
 #if !NETSTANDARD
-using System.Configuration;
-using System.Data;
 using System.Data.Common;
 #endif
 
