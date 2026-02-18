@@ -1008,7 +1008,7 @@ namespace Prolog
                 string functor;
                 OpDescrTriplet triplet;
                 bool spaceAfter;
-                TokenSeqToTerm tokenSeqToTerm = new TokenSeqToTerm(opTable);
+                TokenSeqToTerm tokenSeqToTerm = new(opTable);
                 do
                 {
                     triplet = null;
@@ -1231,7 +1231,7 @@ namespace Prolog
             private void ArgumentList(TerminalSet _TS, out BaseTerm[] args, bool commaIsSeparator)
             {
                 bool b = isReservedOperatorSetting;
-                List<BaseTerm> argList = new List<BaseTerm>();
+                List<BaseTerm> argList = new();
                 BaseTerm a;
                 bool saveStatus = SetCommaAsSeparator(commaIsSeparator);
                 SetReservedOperators(true);
@@ -1265,7 +1265,7 @@ namespace Prolog
                 SetReservedOperators(true);
                 bool isRangeVar;
                 bool lastWasRange = false;
-                List<ListPatternElem> rangeTerms = new List<ListPatternElem>();
+                List<ListPatternElem> rangeTerms = new();
                 try
                 {
                     bool isSearchTerm = false;
@@ -1529,7 +1529,7 @@ namespace Prolog
                 GetSymbol(new TerminalSet(terminalCount, RightParen), true, true);
                 tokenSeqToTerm.Add(t);
                 tokenSeqToTerm.Add(CommaOpTriplet);
-                List<string> ecNames = new List<string>();
+                List<string> ecNames = new();
                 int catchSeqNo = 0;
                 do
                 {

@@ -99,7 +99,7 @@ namespace Prolog
 
             public override string ToWriteString(int level)
             {
-                StringBuilder sb = new StringBuilder(name);
+                StringBuilder sb = new(name);
                 bool first = true;
 
                 foreach (BaseTerm t in subscripts)

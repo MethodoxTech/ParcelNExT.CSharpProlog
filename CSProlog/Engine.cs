@@ -279,7 +279,7 @@ namespace Prolog
 
             public void ReportSingletons(ClauseNode c, int lineNo, ref bool firstReport)
             {
-                List<string> singletons = new List<string>();
+                List<string> singletons = new();
 
                 foreach (VarValue var in variables.Values)
                     if (var.IsSingleton) singletons.Add(var.Name);
@@ -330,7 +330,7 @@ namespace Prolog
 
                 if (!solved) return NO + time;
 
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 string answer = null;
                 BaseTerm term;
 
@@ -788,8 +788,8 @@ namespace Prolog
 #if !NETSTANDARD
         bool StartExecuteGoalListThread()
         {
-            ThreadStart startExecuteGoalList = new ThreadStart(RunExecuteGoalList);
-            Thread run = new Thread(startExecuteGoalList);
+            ThreadStart startExecuteGoalList = new(RunExecuteGoalList);
+            Thread run = new(startExecuteGoalList);
             run.SetApartmentState(ApartmentState.MTA);
             run.Name = "ExecuteGoalList";
             run.IsBackground = true;
@@ -1135,9 +1135,9 @@ namespace Prolog
 
         void InsertCutFail()
         {
-            ClauseNode fail = new ClauseNode(BaseTerm.FAIL, null);
+            ClauseNode fail = new(BaseTerm.FAIL, null);
             fail.NextGoal = goalListHead.NextGoal;
-            ClauseNode cut = new ClauseNode(BaseTerm.CUT, null);
+            ClauseNode cut = new(BaseTerm.CUT, null);
             cut.NextGoal = fail;
             goalListHead = cut;
         }
@@ -1677,7 +1677,7 @@ namespace Prolog
 
         void ShowAncestorGoals(string lmar)
         {
-            Stack<TermNode> ancestors = new Stack<TermNode>();
+            Stack<TermNode> ancestors = new();
             TermNode g;
             int l;
             int lPrev = INF;
@@ -1900,7 +1900,7 @@ namespace Prolog
                     else
                     {
                         // check for find/replace: ![commandno]<sepchar><findstr><sepchar><replacestr>[<sepchar>]
-                        Regex r = new Regex(@"^!(?<cno>\d+)?(?<sep>\S).{3,}$"); // find the command nr, the separator char, and check on length
+                        Regex r = new(@"^!(?<cno>\d+)?(?<sep>\S).{3,}$"); // find the command nr, the separator char, and check on length
                         Match m = r.Match(query);
 
                         if (!m.Success)
@@ -1961,7 +1961,7 @@ namespace Prolog
             {
                 get
                 {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb = new();
 
                     for (int i = 0; i < Count; i++) sb.AppendFormat("\r\n{0,2} {1}", i + 1, this[i]);
 
@@ -2065,7 +2065,7 @@ namespace Prolog
 
         public TimeSpan ProcessorTime() // returns numer of milliseconds since last Call
         {
-            var processorTime = procTime.Elapsed;
+            TimeSpan processorTime = procTime.Elapsed;
             procTime.Reset();
             procTime.Start();
             return processorTime;
@@ -2147,7 +2147,7 @@ namespace Prolog
 
         public void ConsultFromString(string prologCode, string codeTitle = null)
         {
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(prologCode)))
+            using (MemoryStream ms = new(Encoding.UTF8.GetBytes(prologCode)))
                 Consult(ms, codeTitle);
         }
 

@@ -196,9 +196,9 @@ namespace Prolog
         {
             if (currentFileReader == null)
             {
-                StringBuilder query = new StringBuilder();
+                StringBuilder query = new();
                 string line;
-                PrologParser p = new PrologParser(this);
+                PrologParser p = new(this);
 
                 bool first = true;
 

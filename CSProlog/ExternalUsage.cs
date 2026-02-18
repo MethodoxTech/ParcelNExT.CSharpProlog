@@ -84,7 +84,7 @@ namespace Prolog
                     return "yes";
                 else
                 {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb = new();
                     int i = 0;
                     foreach (Solution s in solutionSet)
                         sb.AppendLine("Solution {0}\r\n{1}", ++i, s.ToString());
@@ -133,7 +133,7 @@ namespace Prolog
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             foreach (Variable v in variables)
                 sb.AppendLine(v.ToString());
@@ -346,7 +346,7 @@ namespace Prolog
         public SolutionSet GetAllSolutions(string sourceFileName, string query, int maxSolutionCount)
         {
 
-            SolutionSet solutions = new SolutionSet();
+            SolutionSet solutions = new();
 
             try
             {

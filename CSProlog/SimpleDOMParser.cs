@@ -41,7 +41,7 @@ namespace Prolog
             {
                 public override string ToString()
                 {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb = new();
                     bool first = true;
 
                     for (int i = ToArray().Length - 1; i >= 0; i--)
@@ -429,7 +429,7 @@ namespace Prolog
                 bool isIndent = true;
                 Encoding encoding = null;
                 string settingValue = null; // value of setting
-                NodePath nodePath = new NodePath();
+                NodePath nodePath = new();
 
                 if (settings != null)
                     foreach (BaseTerm setting in (ListTerm)settings) // traverse settings
@@ -466,7 +466,7 @@ namespace Prolog
                     }
 
                 XmlTextWriter xwr = null;
-                StringWriter sw = new StringWriter();
+                StringWriter sw = new();
 
                 try
                 {
@@ -651,7 +651,7 @@ namespace Prolog
 
             new public string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 ToStringEx(this, sb, 0);
 
                 return sb.ToString();
@@ -871,7 +871,7 @@ namespace Prolog
 
             try
             {
-                XslCompiledTransform transform = new XslCompiledTransform();
+                XslCompiledTransform transform = new();
                 transform.Load(xslFileName);
                 transform.Transform(xmlFileName, htmFileName);
             }

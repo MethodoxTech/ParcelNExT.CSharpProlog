@@ -449,7 +449,7 @@ namespace Prolog
 
             public TermNode ToDCG(ref BaseTerm lhs) // called from parser
             {
-                TermNode body = new TermNode();
+                TermNode body = new();
                 BaseTerm result = null;
 
                 BaseTerm inVar = new Variable();
@@ -488,7 +488,7 @@ namespace Prolog
             public List<BaseTerm> AlternativesToArrayList()
             {
                 BaseTerm t = this;
-                List<BaseTerm> a = new List<BaseTerm>();
+                List<BaseTerm> a = new();
 
                 while (t.HasFunctor(PrologParser.SEMI) && t.Arity == 2)
                 {
@@ -505,7 +505,7 @@ namespace Prolog
             public List<BaseTerm> ToTermList()
             {
                 BaseTerm t = this;
-                List<BaseTerm> a = new List<BaseTerm>();
+                List<BaseTerm> a = new();
 
                 while (t.HasFunctor(PrologParser.COMMA) && t.Arity == 2)
                 {
@@ -624,7 +624,7 @@ namespace Prolog
 
             public static string VarList(VarStack varStack) // debugging only
             {
-                StringBuilder result = new StringBuilder();
+                StringBuilder result = new();
 
                 foreach (object v in varStack.ToArray())
                     if (v != null && v is Variable)

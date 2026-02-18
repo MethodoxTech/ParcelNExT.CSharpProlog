@@ -149,7 +149,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 bool first0 = true;
                 sb.Append('[');
 
@@ -569,7 +569,7 @@ namespace Prolog
                     {
                         if (!(t1.IsProperList || t1.IsVar)) return false;
 
-                        BaseTermSet tlist = new BaseTermSet(t0);
+                        BaseTermSet tlist = new(t0);
                         tlist.Sort();
 
                         if (!t1.Unify(tlist.ToList(), varStack)) return false;
@@ -1303,7 +1303,7 @@ namespace Prolog
                     {
                         if (t1.IsProperList)
                         {
-                            StringBuilder sb = new StringBuilder();
+                            StringBuilder sb = new();
 
                             while (t1.Arity == 2)
                             {
@@ -1332,7 +1332,7 @@ namespace Prolog
 
                     if (t0.IsString)
                     {
-                        PrologParser p = new PrologParser(this);
+                        PrologParser p = new(this);
                         p.StreamIn = "&reading\r\n" + t0.FunctorToString.AddEndDot();
 
                         if (!t1.Unify(p.ReadTerm, varStack)) return false;
@@ -1367,7 +1367,7 @@ namespace Prolog
                     }
                     else if (t1.IsProperList)
                     {
-                        StringBuilder sb = new StringBuilder();
+                        StringBuilder sb = new();
                         bool first = true;
 
                         foreach (BaseTerm t in (ListTerm)t1)
@@ -1413,7 +1413,7 @@ namespace Prolog
                     {
                         if (t1.IsProperList)
                         {
-                            StringBuilder sb = new StringBuilder();
+                            StringBuilder sb = new();
 
                             while (t1.Arity == 2)
                             {
@@ -2195,7 +2195,7 @@ namespace Prolog
                         }
                         else // parse JSON-string into JsonTerm
                         {
-                            JsonParser p = new JsonParser();
+                            JsonParser p = new();
                             p.OpTable = opTable;
 
                             if (inFile)
@@ -2825,7 +2825,7 @@ namespace Prolog
                     t0 = term.Arg(0);
                     t1 = term.Arg(1);
                     t2 = term.Arg(2);
-                    BWTImplementation bwt = new BWTImplementation();
+                    BWTImplementation bwt = new();
 
                     if (t1.IsVar) // encode t0 yielding t1
                     {
@@ -2885,7 +2885,7 @@ namespace Prolog
         {
             if (t.IsProperList)
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
 
                 foreach (string s in ((ListTerm)t).ToStringArray())
                     sb.AppendFormat(" {0}", s);

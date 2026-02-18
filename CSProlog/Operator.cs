@@ -272,7 +272,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder("<" + name.ToAtom() + " ");
+                StringBuilder sb = new("<" + name.ToAtom() + " ");
                 bool first = true;
 
                 foreach (OperatorDescr od in this)
@@ -364,7 +364,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
 
                 foreach (OpDescrTriplet od in this.Values)
                     sb.AppendLine(od.ToString());

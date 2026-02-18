@@ -206,7 +206,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 bool first = true;
                 int indent = 2;
                 TermNode tn = this;
@@ -269,7 +269,7 @@ namespace Prolog
             {
                 string NL = Environment.NewLine;
 
-                StringBuilder sb = new StringBuilder(NL + term.ToString());
+                StringBuilder sb = new(NL + term.ToString());
 
                 bool first = true;
                 TermNode tl = nextNode;
@@ -292,7 +292,7 @@ namespace Prolog
             }
 
 
-            public static ClauseNode FAIL = new ClauseNode(BaseTerm.FAIL, null);
+            public static ClauseNode FAIL = new(BaseTerm.FAIL, null);
         }
 
 

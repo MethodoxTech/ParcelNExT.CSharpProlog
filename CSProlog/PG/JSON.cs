@@ -184,7 +184,7 @@ namespace Prolog
             private void JsonObject(TerminalSet _TS, out BaseTerm t)
             {
                 BaseTerm e;
-                List<BaseTerm> listItems = new List<BaseTerm>();
+                List<BaseTerm> listItems = new();
                 GetSymbol(new TerminalSet(terminalCount, LCuBracket), true, true);
                 GetSymbol(new TerminalSet(terminalCount, StringLiteral, RCuBracket), false, true);
                 if (symbol.TerminalId == StringLiteral)
@@ -223,7 +223,7 @@ namespace Prolog
             private void JsonArray(TerminalSet _TS, out BaseTerm t)
             {
                 BaseTerm e;
-                List<BaseTerm> listItems = new List<BaseTerm>();
+                List<BaseTerm> listItems = new();
                 GetSymbol(new TerminalSet(terminalCount, LSqBracket), true, true);
                 GetSymbol(new TerminalSet(terminalCount, IntLiteral, RealLiteral, StringLiteral, LSqBracket, RSqBracket, LCuBracket,
                                                            TrueSym, FalseSym, NullSym), false, true);

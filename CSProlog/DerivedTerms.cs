@@ -34,7 +34,7 @@ namespace Prolog
             public TryCatchTerm(string a) : base(a) { }
         }
 
-        static TryCatchTerm TC_CLOSE = new TryCatchTerm(")");
+        static TryCatchTerm TC_CLOSE = new(")");
 
         public class TryOpenTerm : TryCatchTerm
         {
@@ -340,8 +340,8 @@ namespace Prolog
             {
                 if (dr == null) IO.Fatal("SqlNextRecordToListTerm: DbDataReader is null");
 
-                List<Type> numericTypes = new List<Type>
-        {
+                List<Type> numericTypes = new()
+                {
           typeof (Byte), typeof (Decimal), typeof (Double),  typeof (Int16), typeof (Int32),
           typeof (Int64), typeof (SByte), typeof (Single), typeof (UInt16), typeof (UInt32),
           typeof (UInt64)
@@ -426,7 +426,7 @@ namespace Prolog
             {
                 if (MaxWriteDepthExceeded(level)) return "...";
 
-                StringBuilder sb = new StringBuilder(wrapOpen + SpaceAtLevel(level));
+                StringBuilder sb = new(wrapOpen + SpaceAtLevel(level));
                 bool first = true;
 
                 for (int i = 0; i < arity; i++)
@@ -446,7 +446,7 @@ namespace Prolog
             {
                 if (MaxWriteDepthExceeded(level)) return "...";
 
-                StringBuilder sb = new StringBuilder(wrapFunctor);
+                StringBuilder sb = new(wrapFunctor);
 
                 bool first = true;
 
@@ -564,7 +564,7 @@ namespace Prolog
             {
                 if (MaxWriteDepthExceeded(level)) return "...";
 
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
 
                 if (FunctorToString == PrologParser.COMMA && arity == 2)
                     sb = new StringBuilder("(" + Arg(0).ToWriteString(level) + CommaAtLevel(level)
@@ -611,7 +611,7 @@ namespace Prolog
 
                 string functor = (FunctorToString == PrologParser.CURL) ? "'{{}}'" : FunctorToString;
 
-                StringBuilder sb = new StringBuilder(FunctorIsBinaryComma ? "','" : functor);
+                StringBuilder sb = new(FunctorIsBinaryComma ? "','" : functor);
                 bool first = true;
 
                 sb.Append("(");
@@ -722,7 +722,7 @@ namespace Prolog
             {
                 if (MaxWriteDepthExceeded(level)) return "...";
 
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 bool mustPack;
 
                 if (arity == 2)
@@ -773,7 +773,7 @@ namespace Prolog
             {
                 if (MaxWriteDepthExceeded(level)) return "...";
 
-                StringBuilder sb = new StringBuilder(FunctorIsBinaryComma ? "','" : FunctorToString);
+                StringBuilder sb = new(FunctorIsBinaryComma ? "','" : FunctorToString);
 
                 if (Arity > 0)
                 {
@@ -1346,7 +1346,7 @@ namespace Prolog
 
             public List<BaseTerm> ToList()
             {
-                List<BaseTerm> result = new List<BaseTerm>();
+                List<BaseTerm> result = new();
 
                 foreach (BaseTerm t in this)
                     result.Add(t);
@@ -1518,7 +1518,7 @@ namespace Prolog
             {
                 BaseTerm t = this;
                 BaseTerm t0;
-                List<BaseTerm> result = new List<BaseTerm>();
+                List<BaseTerm> result = new();
 
                 while (t.IsListNode)
                 {
@@ -1585,7 +1585,7 @@ namespace Prolog
 
                 if (MaxWriteDepthExceeded(level)) return "[...]";
 
-                StringBuilder sb = new StringBuilder(leftBracket + altListSpace);
+                StringBuilder sb = new(leftBracket + altListSpace);
                 BaseTerm t = ChainEnd();
 
                 bool first = true;
@@ -1614,7 +1614,7 @@ namespace Prolog
             {
                 if (IsEmptyList) return "leftBracket + rightBracket";
 
-                StringBuilder sb = new StringBuilder(".(");
+                StringBuilder sb = new(".(");
                 sb.Append(Arg(0).ToDisplayString(level));
                 sb.Append(CommaAtLevel(level));
                 sb.Append(Arg(1).ToDisplayString(level));
@@ -1750,7 +1750,7 @@ namespace Prolog
             {
                 BaseTerm t = this;
                 BaseTerm t0;
-                List<BaseTerm> result = new List<BaseTerm>();
+                List<BaseTerm> result = new();
 
                 while (t.FunctorToString == PrologParser.CURL && t.Arity == 2)
                 {
@@ -1772,7 +1772,7 @@ namespace Prolog
             {
                 if (this == NULLCURL) return PrologParser.CURL;
 
-                StringBuilder sb = new StringBuilder("'{}'(");
+                StringBuilder sb = new("'{}'(");
                 sb.Append(Arg(0).ToDisplayString(level));
                 sb.Append(CommaAtLevel(level));
                 sb.Append(Arg(1).ToDisplayString(level));

@@ -14,14 +14,14 @@ namespace Prolog
                 ServicePointManager.ServerCertificateValidationCallback =
                     (sender, certificate, chain, sslPolicyErrors) => true;
 
-                SmtpClient client = new SmtpClient(smtpHost, port)
+                SmtpClient client = new(smtpHost, port)
                 {
                     EnableSsl = true
                 };
 
-                MailAddress from = new MailAddress("xxxxxx@xxxxxx.xx");
-                MailAddress to = new MailAddress(toAddr);
-                MailMessage msg = new MailMessage(from, to)
+                MailAddress from = new("xxxxxx@xxxxxx.xx");
+                MailAddress to = new(toAddr);
+                MailMessage msg = new(from, to)
                 {
                     Subject = subject,
                     Body = body

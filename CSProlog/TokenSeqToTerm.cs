@@ -602,7 +602,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
 
                 foreach (BaseToken t in IS)
                     sb.AppendLine(t.ToString());

@@ -288,7 +288,7 @@ namespace Prolog
 
             #region public fields
             public static CultureInfo CI = CultureInfo.InvariantCulture;
-            public static Hashtable ConsultedFiles = new Hashtable();
+            public static Hashtable ConsultedFiles = new();
             //TODO reconsider the use of the statics below
             public static string ConsultFileName = null;   // file being currently consulted
             public static string ConsultModuleName = null; // name of current module (if any) in file being consulted
@@ -890,7 +890,7 @@ namespace Prolog
             {
                 const string separators = @" +-/*^!@():,.;=[]{}<>\";
 
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 bool first = true;
                 int p = 0;
                 int rem = s.Length - p;
@@ -974,7 +974,7 @@ namespace Prolog
             static string ForceSpaces(string s, int lenMax, string separators, int i)
             {
                 int len = s.Length;
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 string blank = Environment.NewLine;
 
                 // special cases
@@ -1017,7 +1017,7 @@ namespace Prolog
                 if (date.Month == 12 && date.Day >= 29 && date.DayOfWeek <= DayOfWeek.Wednesday)
                     return 1;
 
-                DateTime jan1 = new DateTime(date.Year, 1, 1); // January 1st
+                DateTime jan1 = new(date.Year, 1, 1); // January 1st
                 DayOfWeek jan1Day = jan1.DayOfWeek;
                 // Jan 1st is in week 1 if jan1Day is in sun..wed, since only in that case
                 // there are > 3 days in the week. Calculate the start date of week 1.
@@ -1268,7 +1268,7 @@ namespace Prolog
 
             public Combination(ListTerm t, int k)
             {
-                BaseTermSet ts = new BaseTermSet(t);
+                BaseTermSet ts = new(t);
                 this.k = k;
                 iterator = CombinationsEnum(ts, k).GetEnumerator();
             }
@@ -1297,7 +1297,7 @@ namespace Prolog
 
             public Permutation(ListTerm t)
             {
-                BaseTermSet ts = new BaseTermSet(t);
+                BaseTermSet ts = new(t);
                 ts.Sort();
                 configuration = ts.ToArray();
             }
@@ -1315,7 +1315,7 @@ namespace Prolog
                 */
                 int maxIndex = -1;
 
-                for (var i = configuration.Length - 2; i >= 0; i--)
+                for (int i = configuration.Length - 2; i >= 0; i--)
                 {
                     if (configuration[i].CompareTo(configuration[i + 1]) == -1)
                     {
@@ -1336,7 +1336,7 @@ namespace Prolog
                         break;
                     }
 
-                var tmp = configuration[maxIndex];
+                BaseTerm tmp = configuration[maxIndex];
                 configuration[maxIndex] = configuration[maxIndex2];
                 configuration[maxIndex2] = tmp;
 
@@ -1446,22 +1446,22 @@ namespace Prolog
             return s.IndexOf(c) >= 0;
         }
 
-        static Regex atomPattern = new Regex(  // \p{Ll} means Unicode lowercase letter
+        static Regex atomPattern = new(  // \p{Ll} means Unicode lowercase letter
           @"^([+\-*/\\^<=>`~:.?@#$&]+|\p{Ll}[\w_]*|('[^']*')+)$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
 
-        static Regex unsignedInteger = new Regex(
+        static Regex unsignedInteger = new(
           @"^(\d+)?$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
 
-        static Regex signedNumber = new Regex(
+        static Regex signedNumber = new(
           @"^([+-]?((\d+\.)?\d+)((E|e)[+-]?\d+)?)$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
 
-        static Regex signedImagNumber = new Regex(
+        static Regex signedImagNumber = new(
           @"^([+-]?((\d+\.)?\d+)((E|e)[+-]?\d+)?i?)$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
@@ -1484,13 +1484,13 @@ namespace Prolog
         // decimal d = decimal.Parse (value, System.Globalization.NumberStyles.HexNumber) or:
         // Convert.ToInt32(value, 16). The 16 is the "fromBase" parameter, 16 for hex
         // currently not used:
-        static Regex hexNumber = new Regex(
+        static Regex hexNumber = new(
           @"^(0x[0-9a-fA-F]+)$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
 
 
-        static Regex tokens = new Regex(
+        static Regex tokens = new(
           // identifiers, signed numbers and sequences of non-whites, separated by whites
           @"\s*(?<token>([\p{L}_]+\d*|[+-]?((\d+\.)?\d+)((E|e)[+-]?\d+)?|\S+))\s*",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
@@ -1626,14 +1626,14 @@ namespace Prolog
         }
 
 
-        static Regex stringLiteral = new Regex(
+        static Regex stringLiteral = new(
           @"^(?<char>(\\('|""|\\|0|a|b|f|n|r|t|v|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{1,4}|U[0-9a-fA-F]{8}|.?))|[^\\])+$",
           RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );
 
         //@"\\(?:(?<h>'|""|\\|0|a|b|f|n|r|t|v)|u(?<h>[0-9a-fA-F]{4})|x(?<h>[0-9a-fA-F]{1,4})|U(?<h>[0-9a-fA-F]{8})|(?<h>.))",
 
-        static Regex escapedChar = new Regex(
+        static Regex escapedChar = new(
          @"\\(?:(?<h>'|""|\\|0|a|b|f|n|r|t|v)|u(?<h>[0-9a-fA-F]{4})|x(?<h>[0-9a-fA-F]{1,4})|U(?<h>[0-9a-fA-F]{8}))",
          RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture
         );

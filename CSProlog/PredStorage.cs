@@ -255,7 +255,7 @@ namespace Prolog
             public int Consult(Stream stream, string streamName = null)
             {
                 // string as ISO-style charcode lists or as C# strings
-                var fileName = streamName ?? Guid.NewGuid().ToString("N");
+                string fileName = streamName ?? Guid.NewGuid().ToString("N");
                 consultFileStack.Push(fileName);
                 consultParserStack.Push(Globals.CurrentParser);
                 PrologParser parser = Globals.CurrentParser = new PrologParser(engine);
@@ -470,7 +470,7 @@ namespace Prolog
                       assertionCopy.Index);
 
                 predTable.TryGetValue(key, out pd);
-                ClauseNode newC = new ClauseNode(head, body);
+                ClauseNode newC = new(head, body);
 
                 if (pd == null) // first head
                 {
@@ -700,7 +700,7 @@ namespace Prolog
                 PredicateDescr pd;
 
                 // for sorting the predicates alphabetically:
-                SortedDictionary<string, PredicateDescr> sl = new SortedDictionary<string, PredicateDescr>();
+                SortedDictionary<string, PredicateDescr> sl = new();
 
                 foreach (KeyValuePair<string, PredicateDescr> kv in predTable)
                 {
@@ -843,9 +843,9 @@ namespace Prolog
                 const string HELPRES = "CsProlog.CsPrologHelp";
 
                 // NOTE: .NET3.5+ can retrieve Assembly from a Type object via "Type.Assembly" property, but .NET Standard 1.4 dose not support it.
-                var assemblyName = string.Join(", ", GetType().AssemblyQualifiedName.Split(',').Skip(1).Select(s => s.Trim()).ToArray());
-                var asm = Assembly.Load(new AssemblyName(assemblyName));
-                var rm = new ResourceManager(HELPRES, asm);
+                string assemblyName = string.Join(", ", GetType().AssemblyQualifiedName.Split(',').Skip(1).Select(s => s.Trim()).ToArray());
+                Assembly asm = Assembly.Load(new AssemblyName(assemblyName));
+                ResourceManager rm = new(HELPRES, asm);
 
                 if (functor == null)
                 {
@@ -879,7 +879,7 @@ namespace Prolog
                     arities = new string[] { arity.ToString() };
 
                 bool found = false;
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 string content;
 
                 foreach (string a in arities)
@@ -991,7 +991,7 @@ namespace Prolog
 
             public void ShowProfileCounts(int maxEntry) // maximum number of entries to be shown
             {
-                ProfileCountList profile = new ProfileCountList();
+                ProfileCountList profile = new();
                 int maxLen = 0;
                 int maxVal = 0;
 
@@ -1031,7 +1031,7 @@ namespace Prolog
 
             public void FindUndefineds()
             {
-                SortedList sd = new SortedList();
+                SortedList sd = new();
 
                 foreach (KeyValuePair<string, PredicateDescr> kv in predTable)
                     FindUndefined(sd, kv.Value);

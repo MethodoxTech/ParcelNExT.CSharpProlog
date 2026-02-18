@@ -54,7 +54,7 @@ namespace Prolog
 
             public override string ToString()
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 bool first = true;
 
                 if (HasBindVar) sb.AppendFormat("{0}!", bindVar);
@@ -294,7 +294,7 @@ namespace Prolog
             public override string ToWriteString(int level)
             {
 #if old
-                StringBuilder sb = new StringBuilder(isNegSearch ? "~" : null);
+                StringBuilder sb = new(isNegSearch ? "~" : null);
 #else
         StringBuilder sb = new StringBuilder ();
 #endif
@@ -665,7 +665,7 @@ namespace Prolog
 
             public override string ToWriteString(int level)
             {
-                StringBuilder sb = new StringBuilder(PrologParser.LISTPATOPEN + SpaceAtLevel(level));
+                StringBuilder sb = new(PrologParser.LISTPATOPEN + SpaceAtLevel(level));
                 bool first = true;
 
                 foreach (ListPatternElem e in args)

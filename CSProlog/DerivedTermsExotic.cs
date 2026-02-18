@@ -70,7 +70,7 @@ namespace Prolog
 
             public override ListTerm Reverse()
             {
-                AltListTerm result = new AltListTerm(leftBracket, rightBracket);
+                AltListTerm result = new(leftBracket, rightBracket);
 
                 foreach (BaseTerm t in this) result =
                   new AltListTerm(leftBracket, rightBracket, t, result);
@@ -83,7 +83,7 @@ namespace Prolog
             {
                 List<BaseTerm> a = FlattenListEx(functor);
 
-                AltListTerm result = new AltListTerm(leftBracket, rightBracket);
+                AltListTerm result = new(leftBracket, rightBracket);
 
                 for (int i = a.Count - 1; i >= 0; i--)
                     result = new AltListTerm(leftBracket, rightBracket, a[i], result); // [a0, a0, ...]
@@ -104,7 +104,7 @@ namespace Prolog
             int maxIndentLevel = 1; // string representation will no longer be indented beyond maxIndentLevel
             public int MaxIndentLevel { private get { return maxIndentLevel; } set { maxIndentLevel = value; } }
             bool noQuotes = false;
-            static JsonTerm EMPTY = new JsonTerm();
+            static JsonTerm EMPTY = new();
             JsonTextBuffer jtb;
 
             public JsonTerm() : base() { }
@@ -119,7 +119,7 @@ namespace Prolog
 
             public static JsonTerm FromArray(BaseTerm[] ta)
             {
-                JsonTerm result = new JsonTerm();
+                JsonTerm result = new();
 
                 for (int i = ta.Length - 1; i >= 0; i--)
                     result = new JsonTerm(ta[i], result);
@@ -517,13 +517,13 @@ System message : {2}",
             public DecimalTerm ImTerm { get { return new DecimalTerm(im); } }
             ComplexTerm eposx;
             ComplexTerm enegx;
-            static ComplexTerm ZERO = new ComplexTerm(0f, 0f);
-            static ComplexTerm ONE = new ComplexTerm(1f, 0f);
-            static ComplexTerm TWO = new ComplexTerm(2f, 0f);
-            static ComplexTerm I = new ComplexTerm(0f, 1f);
-            static ComplexTerm TWO_I = new ComplexTerm(0f, 2f);
-            static ComplexTerm MINUS_I = new ComplexTerm(0f, -1f);
-            static ComplexTerm MINUS_2I = new ComplexTerm(0f, -2f);
+            static ComplexTerm ZERO = new(0f, 0f);
+            static ComplexTerm ONE = new(1f, 0f);
+            static ComplexTerm TWO = new(2f, 0f);
+            static ComplexTerm I = new(0f, 1f);
+            static ComplexTerm TWO_I = new(0f, 2f);
+            static ComplexTerm MINUS_I = new(0f, -1f);
+            static ComplexTerm MINUS_2I = new(0f, -2f);
 
             public ComplexTerm(decimal re, decimal im)
             {

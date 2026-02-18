@@ -518,7 +518,7 @@ namespace Prolog
                         case "chain":
                             if (!a0.IsProperList)
                                 IO.Error("chain/2:first argument '{0}' is not a proper list", a0);
-                            StringBuilder chain = new StringBuilder();
+                            StringBuilder chain = new();
                             string separator = a1.FunctorToString;
                             foreach (BaseTerm t in (ListTerm)a0)
                             {

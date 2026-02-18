@@ -128,7 +128,7 @@ namespace Prolog
 
             public TerminalSet Union(int terminalCount, params int[] ta)
             {
-                TerminalSet union = new TerminalSet(terminalCount, x);  // create an identical set
+                TerminalSet union = new(terminalCount, x);  // create an identical set
 
                 foreach (int terminal in ta) union[terminal] = true; // ... and unify
 
@@ -842,7 +842,7 @@ namespace Prolog
                 {
                     get
                     {
-                        StringBuilder sb = new StringBuilder(String.Format("{0}*** {1}: line {2}", Environment.NewLine,
+                        StringBuilder sb = new(String.Format("{0}*** {1}: line {2}", Environment.NewLine,
                                                                              parser.inStream.Name, LineNo));
 
                         if (this.Start >= this.Final) return sb.ToString() + Environment.NewLine;
@@ -1015,7 +1015,7 @@ namespace Prolog
 
                 public override string ToString()
                 {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sb = new();
 
                     //ToString (this, sb, 0);        // tree representation
                     ToString(this, "", sb, 0);    // flat representation
@@ -1069,10 +1069,10 @@ namespace Prolog
             public class BaseTrie
             {
                 public static readonly int UNDEF = -1;
-                TrieNode root = new TrieNode('\x0', null, null);
+                TrieNode root = new('\x0', null, null);
                 int terminalCount;
-                ArrayList indices = new ArrayList();
-                Hashtable names = new Hashtable();
+                ArrayList indices = new();
+                Hashtable names = new();
                 ArrayList curr;
                 DupMode dupMode = DupMode.dupError;
                 bool caseSensitive = false; // every term to lowercase
@@ -1293,7 +1293,7 @@ namespace Prolog
 
                     if (k < 0) return null;
 
-                    ArrayList result = new ArrayList();
+                    ArrayList result = new();
                     int k0 = k;
 
                     while (true)
@@ -1321,7 +1321,7 @@ namespace Prolog
 
                 public string TerminalImageSet(TerminalSet ts)
                 {
-                    StringBuilder result = new StringBuilder();
+                    StringBuilder result = new();
                     bool isFirst = true;
                     int[] ii;
 
@@ -1454,7 +1454,7 @@ namespace Prolog
 
                 public ArrayList ToArrayList()
                 {
-                    ArrayList a = new ArrayList();
+                    ArrayList a = new();
 
                     TrieNode.ToArrayList(root, true, ref a);
 
@@ -1966,7 +1966,7 @@ namespace Prolog
 
             protected void Parse()
             {
-                var stopwatch = Stopwatch.StartNew();
+                Stopwatch stopwatch = Stopwatch.StartNew();
                 ParseEx();
                 stopwatch.Stop();
                 actRuntime = (int)stopwatch.ElapsedMilliseconds;
@@ -2240,7 +2240,7 @@ namespace Prolog
         #region Buffer
         public class Buffer
         {
-            Stack indentStack = new Stack();
+            Stack indentStack = new();
             protected char indentChar = '\u0020';
             protected int indentDelta = 2;
             protected string name;
@@ -2540,8 +2540,8 @@ namespace Prolog
 
             public override void SaveToFile(string fileName)
             {
-                using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
-                using (var sw = new StreamWriter(fs))
+                using (FileStream fs = new(fileName, FileMode.Create, FileAccess.Write))
+                using (StreamWriter sw = new(fs))
                 {
                     sw.Write(sb.ToString());
                 }
@@ -2712,9 +2712,9 @@ namespace Prolog
 
             public override void SaveToFile(string fileName)
             {
-                using (var f = new FileStream(fileName, FileMode.Create))
+                using (FileStream f = new(fileName, FileMode.Create))
                 {
-                    var b = new byte[fs.Length];
+                    byte[] b = new byte[fs.Length];
                     fs.Read(b, 0, b.Length);
                     f.Write(b, 0, b.Length);
                 }
@@ -2734,7 +2734,7 @@ namespace Prolog
             {
                 byte[] b = new byte[fs.Length];
                 fs.Read(b, 0, b.Length);
-                ASCIIEncoding enc = new ASCIIEncoding();
+                ASCIIEncoding enc = new();
                 return enc.GetString(b);
             }
 
@@ -3012,7 +3012,7 @@ namespace Prolog
 
             public void SaveToFile(string fileName)
             {
-                StreamWriter sw = new StreamWriter(fileName);
+                StreamWriter sw = new(fileName);
                 sw.Write(this.ToString());
                 sw.Close();
             }
